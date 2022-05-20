@@ -1,7 +1,13 @@
-<h2><%= @list.name %></h2>
-<%= link_to 'Add a movie', new_list_bookmark_path(@list) %>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @list.photo.key, height: 700, crop: :fill %>');">
+  <div class="container">
+    <h1 class="banner-title"><%= @list.name %></h1>
+    <%= link_to "Back to list", root_path, class: "button-home" %>
+  </div>
+</div>
 
-<%= link_to lists_path do %>
+
+<%= link_to 'Add a movie', new_list_bookmark_path(@list) %>
+<%= link_to root_path do %>
   <i class="fa fa-history"></i> Back to list
 <% end %>
 
