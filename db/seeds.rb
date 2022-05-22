@@ -19,10 +19,11 @@ movies_db = URI.open(url).read
 movies = JSON.parse(movies_db)
 results = movies['results']
 
-results[0..10].each do |result|
-  Movie.create!(title: result['title'], overview: result['overview'], poster_url: result['poster_path'], rating: result['rating'])
-end
-
-10.times do
-  List.create(name: Faker::Creature::Animal.name)
+results.each do |result|
+  base_poster_url = "https://image.tmdb.org/t/p/original"
+  Movie.create!(
+    title: result['title'],
+    overview: result['overview'],
+    poster_url: "#{base_poster_url}#{result['poster_path']}",
+    rating: result['vote_average'])
 end
